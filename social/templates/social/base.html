@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Red Social{% endblock %}</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'social/css/styles.css' %}">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <h1>Red Social de Aficiones</h1>
+
+        <nav class="main-nav">
+
+            <a href="{% url 'home' %}">
+                Inicio
+            </a>
+
+            {% if user.is_authenticated %}
+                <a href="{% url 'users_list' %}">
+                    Usuarios
+                </a>
+
+                <a href="{% url 'create_post' %}">
+                    Nueva publicación
+                </a>
+
+                <a href="{% url 'profile' user.username %}">
+                    Mi perfil
+                </a>
+
+                <form
+                    class="logout-form"
+                    action="{% url 'logout' %}"
+                    method="POST"
+                >
+                    {% csrf_token %}
+
+                    <button
+                        class="logout-button"
+                        type="submit"
+                    >
+                        Cerrar sesión
+                    </button>
+                </form>
+
+            {% else %}
+
+                <a href="{% url 'login' %}">
+                    Iniciar sesión
+                </a>
+
+                <a href="{% url 'register' %}">
+                    Registro
+                </a>
+
+            {% endif %}
+
+        </nav>
+    </header>
+
+
+    <main class="container">
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+{% extends "social/base.html" %}
+
+{% block title %}
+Inicio | Red Social
+{% endblock %}
+
+{% block content %}
+
+<h2>Publicaciones</h2>
+
+{% for post in posts %}
+
+    <article class="post">
+
+        <h3>
+            <a href="{% url 'profile' post.author.username %}">
+                {{ post.author.username }}
+            </a>
+        </h3>
+
+        <p>{{ post.text }}</p>
+
+        {% if post.image %}
+            <img
+                src="{{ post.image.url }}"
+                alt="Imagen de la publicación"
+            >
+        {% endif %}
+
+        <p class="post-date">
+            {{ post.created_at }}
+        </p>
+
+        <p>
+            Likes: {{ post.likes.count }}
+        </p>
+
+        {% if user.is_authenticated %}
+
+            <form
+                class="inline-form"
+                action="{% url 'like_post' post.id %}"
+                method="POST"
+            >
+                {% csrf_token %}
+
+                <button type="submit">
+                    Like / Unlike
+                </button>
+            </form>
+
+        {% endif %}
+
+        <section class="comments">
+
+            <h4>Comentarios</h4>
+
+            {% for comment in post.comments.all %}
+
+                <p class="comment">
+                    <strong>{{ comment.author.username }}</strong>:
+                    {{ comment.text }}
+                </p>
+
+            {% empty %}
+
+                <p>No hay comentarios.</p>
+
+            {% endfor %}
+
+            {% if user.is_authenticated %}
+
+                <form
+                    class="comment-form"
+                    action="{% url 'add_comment' post.id %}"
+                    method="POST"
+                >
+                    {% csrf_token %}
+
+                    <input
+                        type="text"
+                        name="text"
+                        placeholder="Escribe un comentario"
+                    >
+
+                    <button type="submit">
+                        Comentar
+                    </button>
+                </form>
+
+            {% endif %}
+
+        </section>
+
+    </article>
+
+{% empty %}
+
+    <p>No hay publicaciones todavía.</p>
+
+{% endfor %}
+
+{% endblock %}

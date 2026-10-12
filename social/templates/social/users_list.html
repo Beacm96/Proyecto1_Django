@@ -1,0 +1,67 @@
+{% extends "social/base.html" %}
+
+{% block title %}
+Usuarios | Red Social
+{% endblock %}
+
+{% block content %}
+
+<section class="users-section">
+
+    <h2>Usuarios</h2>
+
+    <p>
+        Descubre otros usuarios de la red social.
+    </p>
+
+    <div class="users-grid">
+
+        {% for profile_user in users %}
+
+            <article class="user-card">
+
+                {% if profile_user.profile.avatar %}
+
+                    <img
+                        src="{{ profile_user.profile.avatar.url }}"
+                        alt="Avatar de {{ profile_user.username }}"
+                        class="user-avatar"
+                    >
+
+                {% endif %}
+
+                <h3>
+                    {{ profile_user.username }}
+                </h3>
+
+                {% if profile_user.profile.hobbies %}
+
+                    <p>
+                        <strong>Aficiones:</strong>
+                        {{ profile_user.profile.hobbies }}
+                    </p>
+
+                {% endif %}
+
+                <a
+                    class="button"
+                    href="{% url 'profile' profile_user.username %}"
+                >
+                    Ver perfil
+                </a>
+
+            </article>
+
+        {% empty %}
+
+            <p>
+                Todavía no hay otros usuarios registrados.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

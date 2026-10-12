@@ -1,0 +1,128 @@
+{% extends "social/base.html" %}
+
+{% block title %}
+Perfil de {{ profile_user.username }} | Red Social
+{% endblock %}
+
+{% block content %}
+
+<section class="profile">
+
+    <h2>Perfil de {{ profile_user.username }}</h2>
+
+    {% if profile.avatar %}
+
+        <img
+            src="{{ profile.avatar.url }}"
+            alt="Avatar de {{ profile_user.username }}"
+            class="profile-avatar"
+        >
+
+    {% endif %}
+
+    <p>
+        <strong>Bio:</strong>
+        {{ profile.bio }}
+    </p>
+
+    <p>
+        <strong>Aficiones:</strong>
+        {{ profile.hobbies }}
+    </p>
+
+    <div class="profile-stats">
+
+        <p>
+            Seguidores: {{ followers_count }}
+        </p>
+
+        <p>
+            Siguiendo: {{ following_count }}
+        </p>
+
+        <p>
+            Publicaciones: {{ user_posts.count }}
+        </p>
+
+    </div>
+
+
+    {% if user == profile_user %}
+
+        <a
+            class="button"
+            href="{% url 'edit_profile' %}"
+        >
+            Editar perfil
+        </a>
+
+    {% endif %}
+
+
+    {% if user.is_authenticated %}
+
+        {% if user != profile_user %}
+
+            {% if is_following %}
+
+                <a
+                    class="button"
+                    href="{% url 'unfollow_user' profile_user.username %}"
+                >
+                    Dejar de seguir
+                </a>
+
+            {% else %}
+
+                <a
+                    class="button"
+                    href="{% url 'follow_user' profile_user.username %}"
+                >
+                    Seguir
+                </a>
+
+            {% endif %}
+
+        {% endif %}
+
+    {% endif %}
+
+</section>
+
+
+<section class="profile-posts">
+
+    <h2>Publicaciones</h2>
+
+    {% for post in user_posts %}
+
+        <article class="post">
+
+            <p>{{ post.text }}</p>
+
+            {% if post.image %}
+
+                <img
+                    src="{{ post.image.url }}"
+                    alt="Imagen de la publicación"
+                >
+
+            {% endif %}
+
+            <p class="post-date">
+                {{ post.created_at }}
+            </p>
+
+        </article>
+
+    {% empty %}
+
+        <p>
+            Este usuario todavía no tiene publicaciones.
+        </p>
+
+    {% endfor %}
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,333 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f6f8;
+    color: #222;
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+
+.main-header {
+    background-color: #111827;
+    color: white;
+    padding: 20px;
+}
+
+.main-header h1 {
+    margin: 0 0 15px;
+    font-size: 28px;
+}
+
+
+
+
+.main-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.main-nav a,
+.logout-button {
+    color: white;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 6px;
+}
+
+.main-nav a:hover,
+.logout-button:hover {
+    background-color: #2563eb;
+    text-decoration: none;
+}
+
+
+
+
+.logout-form {
+    margin: 0;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+}
+
+.logout-button {
+    border: none;
+    background: none;
+    font: inherit;
+    cursor: pointer;
+}
+
+
+
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+
+
+
+h2,
+h3,
+h4 {
+    color: #111827;
+}
+
+
+
+
+.post {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 25px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.post img {
+    margin-top: 15px;
+    border-radius: 10px;
+}
+
+.post-date {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+
+
+
+.comments {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+}
+
+.comment {
+    background-color: #f9fafb;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.comment-form {
+    margin-top: 15px;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+
+
+
+.form-section {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+label {
+    font-weight: bold;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+
+    margin-top: 5px;
+    margin-bottom: 15px;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    font: inherit;
+}
+
+textarea {
+    resize: vertical;
+}
+
+
+
+button,
+.button {
+    display: inline-block;
+
+    padding: 10px 16px;
+
+    border: none;
+    border-radius: 6px;
+
+    background-color: #2563eb;
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+button:hover,
+.button:hover {
+    background-color: #1d4ed8;
+    text-decoration: none;
+}
+
+
+
+
+.inline-form {
+    display: inline-block;
+
+    margin: 0;
+
+    padding: 0;
+
+    background: none;
+
+    box-shadow: none;
+}
+
+
+
+
+.profile {
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+    margin-bottom: 30px;
+}
+
+.profile-avatar {
+    width: 140px;
+    height: 140px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    margin-bottom: 20px;
+}
+
+.profile-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    margin: 20px 0;
+}
+
+.profile-posts {
+    margin-top: 30px;
+}
+
+
+
+
+@media (min-width: 768px) {
+
+    .main-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+    }
+
+    .main-header h1 {
+        margin: 0;
+    }
+
+    .main-nav {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .profile-stats {
+        flex-direction: row;
+        gap: 25px;
+    }
+}
+
+
+
+.users-section {
+    margin-top: 10px;
+}
+
+.users-section > p {
+    color: #6b7280;
+    margin-bottom: 25px;
+}
+
+.users-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.user-card {
+    background-color: white;
+    padding: 20px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.user-card h3 {
+    margin-top: 15px;
+}
+
+.user-avatar {
+    width: 100px;
+    height: 100px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+}
+
+@media (min-width: 768px) {
+
+    .users-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
