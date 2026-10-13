@@ -1,12 +1,26 @@
 # Red Social de Aficiones
 
-Proyecto desarrollado con Django como parte del módulo de Django del Máster en Desarrollo Full Stack.
+Proyecto desarrollado con **Django** como parte del módulo de Django del **Máster en Desarrollo Full Stack de Conquer Blocks**.
 
 ## Descripción
 
 Esta aplicación consiste en una mini red social temática en la que los usuarios pueden registrarse, iniciar sesión, crear publicaciones, seguir a otros usuarios e interactuar mediante comentarios y likes.
 
 El muro principal muestra las publicaciones propias y las publicaciones de los usuarios seguidos.
+
+La aplicación está desplegada en **Render**, utiliza **PostgreSQL** como base de datos de producción y **Cloudinary** para almacenar las imágenes de las publicaciones y los perfiles.
+
+## Aplicación desplegada
+
+El proyecto se encuentra publicado y puede utilizarse desde el navegador.
+
+**Enlace a la aplicación:** https://proyecto1-django.onrender.com
+
+**Repositorio de GitHub:** https://github.com/Beacm96/Proyecto1_Django
+
+La aplicación permite registrarse, iniciar sesión y probar sus funcionalidades.
+
+**Nota:** El servicio web utiliza el plan gratuito de Render, por lo que la primera carga puede tardar después de un periodo de inactividad. La disponibilidad también depende de que la base de datos permanezca activa.
 
 ## Funcionalidades
 
@@ -27,95 +41,116 @@ El muro principal muestra las publicaciones propias y las publicaciones de los u
 
 ## Modelos principales
 
-- User
-- Profile
-- Post
-- Comment
-- Like
-- Follow
+- **User:** modelo de usuario de Django.
+- **Profile:** información adicional del usuario, biografía, aficiones y avatar.
+- **Post:** publicaciones creadas por los usuarios.
+- **Comment:** comentarios en las publicaciones.
+- **Like:** interacciones de los usuarios con las publicaciones.
+- **Follow:** relaciones de seguimiento entre usuarios.
 
 ## Tecnologías utilizadas
+
+### Desarrollo
 
 - Python
 - Django
 - HTML
 - CSS
-- SQLite
 - Pillow
 
-## Instalación
+### Bases de datos
 
-Clonar el repositorio:
+- SQLite: utilizada durante el desarrollo local.
+- PostgreSQL: utilizada en el entorno de producción.
+
+### Despliegue y almacenamiento
+
+- **Render:** alojamiento y ejecución de la aplicación Django.
+- **Cloudinary:** almacenamiento de las imágenes de perfil y publicaciones.
+- **GitHub:** control de versiones y repositorio del código fuente.
+
+## Instalación local
+
+### 1. Clonar el repositorio
 
 ```bash
 git clone https://github.com/Beacm96/Proyecto1_Django.git
 ```
 
-Entrar en la carpeta del proyecto:
+### 2. Entrar en la carpeta del proyecto
 
 ```bash
 cd Proyecto1_Django
 ```
 
-Crear un entorno virtual:
+### 3. Crear un entorno virtual
 
 ```bash
 python3 -m venv venv
 ```
 
-Activar el entorno virtual en macOS/Linux:
+### 4. Activar el entorno virtual
+
+En macOS/Linux:
 
 ```bash
 source venv/bin/activate
 ```
 
-Instalar las dependencias:
+En Windows:
+
+```bash
+venv\Scripts\activate
+```
+
+### 5. Instalar las dependencias
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Migraciones
+### 6. Configurar las variables de entorno
 
-Aplicar las migraciones de Django:
+El proyecto utiliza variables de entorno para gestionar la configuración y las credenciales de forma segura.
+
+Variables utilizadas en producción:
+
+- `SECRET_KEY`
+- `DEBUG`
+- `ALLOWED_HOSTS`
+- `CSRF_TRUSTED_ORIGINS`
+- `DATABASE_URL`
+- `CLOUDINARY_CLOUD_NAME`
+- `CLOUDINARY_API_KEY`
+- `CLOUDINARY_API_SECRET`
+
+Para ejecutar el proyecto localmente es necesario configurar las variables requeridas por `settings.py`.
+
+No se deben incluir contraseñas, claves privadas ni credenciales reales en el repositorio.
+
+### 7. Aplicar las migraciones
 
 ```bash
 python manage.py migrate
 ```
 
-## Ejecutar el proyecto
-
-Iniciar el servidor de desarrollo:
+### 8. Ejecutar el servidor de desarrollo
 
 ```bash
 python manage.py runserver
 ```
 
-Después abrir en el navegador:
+Abrir en el navegador:
 
-```text
 http://127.0.0.1:8000/
-```
-
-## Tests
-
-Ejecutar los tests del proyecto:
-
-```bash
-python manage.py test
-```
-
-Comprobar que Django no detecta errores de configuración:
-
-```bash
-python manage.py check
-```
 
 ## Funcionalidades principales
 
 ### Publicaciones
 
 Los usuarios autenticados pueden crear publicaciones con texto e imagen.
+
+Las imágenes se almacenan mediante Cloudinary en el entorno de producción.
 
 ### Perfiles
 
@@ -137,7 +172,7 @@ Los usuarios autenticados pueden añadir o eliminar un like de una publicación.
 
 Los usuarios autenticados pueden comentar en las publicaciones.
 
-## Tests incluidos
+## Tests
 
 El proyecto incluye tests para comprobar:
 
@@ -147,6 +182,33 @@ El proyecto incluye tests para comprobar:
 - Añadir y eliminar likes
 - Visualización de publicaciones de usuarios seguidos en el muro
 
+Para ejecutar los tests:
+
+```bash
+python manage.py test
+```
+
+Para comprobar la configuración de Django:
+
+```bash
+python manage.py check
+```
+
+## Despliegue en producción
+
+La aplicación se encuentra desplegada en Render, conectada al repositorio de GitHub.
+
+La configuración de producción utiliza:
+
+- **Render Web Service:** ejecuta la aplicación Django y permite acceder a ella mediante una URL pública.
+- **Render PostgreSQL:** almacena los datos de usuarios, perfiles, publicaciones, comentarios y relaciones.
+- **Cloudinary:** almacena las imágenes subidas por los usuarios.
+- **Variables de entorno:** permiten gestionar la configuración y las credenciales sin incluirlas directamente en el código.
+
+El proyecto utiliza `DEBUG=False` en producción.
+
+**URL pública:** https://proyecto1-django.onrender.com
+
 ## Autor
 
-Proyecto realizado como ejercicio académico del módulo de Django.
+Proyecto realizado como ejercicio académico del módulo de Django del Máster en Desarrollo Full Stack de Conquer Blocks.
